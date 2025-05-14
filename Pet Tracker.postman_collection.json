@@ -1,0 +1,1396 @@
+{
+	"info": {
+		"_postman_id": "1b894c97-79fc-4d6e-a3b2-6b37ccd122f2",
+		"name": "Pet Tracker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9563698"
+	},
+	"item": [
+		{
+			"name": "Step 0 - Health Check",
+			"item": [
+				{
+					"name": "Actuator",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actuator/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Step 1 - Error",
+			"item": [
+				{
+					"name": "Pet Type",
+					"item": [
+						{
+							"name": "1 - Error Bird",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"petType\": \"BIRD\",\n    \"trackerType\": \"Bluetooth\",\n    \"ownerId\": 123,\n    \"inZone\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2 - Error lc: dog",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"petType\": \"dog\",\n    \"trackerType\": \"Bluetooth\",\n    \"ownerId\": 123,\n    \"inZone\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2.5 - Error lc: cat",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"petType\": \"cat\",\n    \"trackerType\": \"Bluetooth\",\n    \"ownerId\": 123,\n    \"inZone\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3 - Error missing pet type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"trackerType\": \"Bluetooth\",\n    \"ownerId\": 123,\n    \"inZone\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Dog fields",
+					"item": [
+						{
+							"name": "1 - Error missing tracker type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"petType\": \"DOG\",\n    \"ownerId\": 123,\n    \"inZone\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2 - Error missing owner id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"petType\": \"DOG\",\n    \"trackerType\": \"Bluetooth\",\n    \"inZone\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2.5 - Error invalid owner id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"petType\": \"DOG\",\n    \"trackerType\": \"Bluetooth\",\n    \"ownerId\": -5,\n    \"inZone\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3 - Error missing inzone",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"petType\": \"DOG\",\n    \"trackerType\": \"Bluetooth\",\n    \"ownerId\": 123,\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3.5 - Error null inzone",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"petType\": \"DOG\",\n    \"trackerType\": \"Bluetooth\",\n    \"ownerId\": 123,\n    \"inZone\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cat fields",
+					"item": [
+						{
+							"name": "1 - Error missing tracker type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"petType\": \"CAT\",\n    \"ownerId\": 123,\n    \"inZone\": true,\n    \"lostTracker\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2 - Error missing owner id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"petType\": \"CAT\",\n    \"trackerType\": \"RFID\",\n    \"inZone\": true,\n    \"lostTracker\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2.5 - Error invalid owner id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"petType\": \"CAT\",\n    \"trackerType\": \"RFID\",\n    \"ownerId\": -5,\n    \"inZone\": true,\n    \"lostTracker\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3 - Error missing inzone",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"petType\": \"CAT\",\n    \"trackerType\": \"RFID\",\n    \"ownerId\": 123,\n    \"lostTracker\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3.5 - Error null inzone",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"petType\": \"CAT\",\n    \"trackerType\": \"RFID\",\n    \"ownerId\": 123,\n    \"inZone\": null,\n    \"lostTracker\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "4 - Error missing lostTracker",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"petType\": \"CAT\",\n    \"trackerType\": \"RFID\",\n    \"ownerId\": 123,\n    \"inZone\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "4.5 - Error null lostTracker",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"petType\": \"CAT\",\n    \"trackerType\": \"RFID\",\n    \"ownerId\": 123,\n    \"inZone\": true,\n    \"lostTracker\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Error ID not Populated",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Step 2 - Setup",
+			"item": [
+				{
+					"name": "Empty Inzone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Empty Structure is returned\", function () {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response.dogs).to.be.empty;",
+									"    pm.expect(response.cats).to.be.empty;",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/inzone",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inzone"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Empty Fetch All",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Empty Structure is returned\", function () {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.be.empty;",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Pet 1 - Dog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"ID is 1\", function () {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.equal(1);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"petType\": \"DOG\",\n    \"trackerType\": \"GPS\",\n    \"ownerId\": 123,\n    \"inZone\": false,\n    \"lostTracker\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Pet 2 - Dog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"ID is 2\", function () {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.equal(2);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"petType\": \"DOG\",\n    \"trackerType\": \"GPS\",\n    \"ownerId\": 234,\n    \"inZone\": false,\n    \"lostTracker\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Pet 3 - Dog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"ID is 3\", function () {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.equal(3);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"petType\": \"DOG\",\n    \"trackerType\": \"RFID\",\n    \"ownerId\": 345,\n    \"inZone\": true,\n    \"lostTracker\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Pet 4 - Cat",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"ID is 4\", function () {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.equal(4);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"petType\": \"CAT\",\n    \"trackerType\": \"GPS\",\n    \"ownerId\": 345,\n    \"inZone\": true,\n    \"lostTracker\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Pet 5 - Cat",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"ID is 5\", function () {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.equal(5);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"petType\": \"CAT\",\n    \"trackerType\": \"RFID\",\n    \"ownerId\": 456,\n    \"inZone\": false,\n    \"lostTracker\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Pet 6 - Cat",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"ID is 6\", function () {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.equal(6);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"petType\": \"CAT\",\n    \"trackerType\": \"RFID\",\n    \"ownerId\": 567,\n    \"inZone\": true,\n    \"lostTracker\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Step 3 - Validate",
+			"item": [
+				{
+					"name": "Fetch By ID 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Confirm correct Object is returned\", function () {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response.id).to.equal(2);",
+									"    pm.expect(response.petType).to.equal(\"DOG\");",
+									"    pm.expect(response.trackerType).to.equal(\"GPS\");",
+									"    pm.expect(response.ownerId).to.equal(234);",
+									"    pm.expect(response.inZone).to.equal(false);",
+									"    pm.expect(response.lostTracker).to.equal(null);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/id/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"id",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch By ID 5",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/id/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"id",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch All",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const response = pm.response.json();",
+									"",
+									"pm.test(\"Check Size\", function () {",
+									"    pm.expect(response).lengthOf(6);",
+									"});",
+									"",
+									"pm.test(\"Check Pet 1\", function () {",
+									"    var pet1 = response[0];",
+									"    pm.expect(pet1.id).to.equal(1);",
+									"    pm.expect(pet1.petType).to.equal(\"DOG\");",
+									"    pm.expect(pet1.trackerType).to.equal(\"GPS\");",
+									"    pm.expect(pet1.ownerId).to.equal(123);",
+									"    pm.expect(pet1.inZone).to.equal(false);",
+									"    pm.expect(pet1.lostTracker).to.equal(null);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Check Pet 2\", function () {",
+									"    var pet1 = response[1];",
+									"    pm.expect(pet1.id).to.equal(2);",
+									"    pm.expect(pet1.petType).to.equal(\"DOG\");",
+									"    pm.expect(pet1.trackerType).to.equal(\"GPS\");",
+									"    pm.expect(pet1.ownerId).to.equal(234);",
+									"    pm.expect(pet1.inZone).to.equal(false);",
+									"    pm.expect(pet1.lostTracker).to.equal(null);",
+									"});",
+									"",
+									"pm.test(\"Check Pet 3\", function () {",
+									"    var pet1 = response[2];",
+									"    pm.expect(pet1.id).to.equal(3);",
+									"    pm.expect(pet1.petType).to.equal(\"DOG\");",
+									"    pm.expect(pet1.trackerType).to.equal(\"RFID\");",
+									"    pm.expect(pet1.ownerId).to.equal(345);",
+									"    pm.expect(pet1.inZone).to.equal(true);",
+									"    pm.expect(pet1.lostTracker).to.equal(null);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Check Pet 4\", function () {",
+									"    var pet1 = response[3];",
+									"    pm.expect(pet1.id).to.equal(4);",
+									"    pm.expect(pet1.petType).to.equal(\"CAT\");",
+									"    pm.expect(pet1.trackerType).to.equal(\"GPS\");",
+									"    pm.expect(pet1.ownerId).to.equal(345);",
+									"    pm.expect(pet1.inZone).to.equal(true);",
+									"    pm.expect(pet1.lostTracker).to.equal(true);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Check Pet 5\", function () {",
+									"    var pet1 = response[4];",
+									"    pm.expect(pet1.id).to.equal(5);",
+									"    pm.expect(pet1.petType).to.equal(\"CAT\");",
+									"    pm.expect(pet1.trackerType).to.equal(\"RFID\");",
+									"    pm.expect(pet1.ownerId).to.equal(456);",
+									"    pm.expect(pet1.inZone).to.equal(false);",
+									"    pm.expect(pet1.lostTracker).to.equal(false);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Check Pet 6\", function () {",
+									"    var pet1 = response[5];",
+									"    pm.expect(pet1.id).to.equal(6);",
+									"    pm.expect(pet1.petType).to.equal(\"CAT\");",
+									"    pm.expect(pet1.trackerType).to.equal(\"RFID\");",
+									"    pm.expect(pet1.ownerId).to.equal(567);",
+									"    pm.expect(pet1.inZone).to.equal(true);",
+									"    pm.expect(pet1.lostTracker).to.equal(false);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inzone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const dogs = pm.response.json().dogs;",
+									"const cats = pm.response.json().cats;",
+									"",
+									"pm.test(\"Check Size Dogs\", function () {",
+									"    pm.expect(dogs).lengthOf(2);",
+									"});",
+									"",
+									"pm.test(\"Check Dogs RFID\", function () {",
+									"    var rfid = dogs[0];",
+									"    pm.expect(rfid.trackerType).to.equal(\"RFID\");",
+									"    pm.expect(rfid.totalInZone).to.equal(1);",
+									"    pm.expect(rfid.totalOutZone).to.equal(0);",
+									"});",
+									"",
+									"pm.test(\"Check Dogs GPS\", function () {",
+									"    var gps = dogs[1];",
+									"    pm.expect(gps.trackerType).to.equal(\"GPS\");",
+									"    pm.expect(gps.totalInZone).to.equal(0);",
+									"    pm.expect(gps.totalOutZone).to.equal(2);",
+									"});",
+									"",
+									"pm.test(\"Check Size Cats\", function () {",
+									"    pm.expect(cats).lengthOf(2);",
+									"});",
+									"",
+									"pm.test(\"Check Cats RFID\", function () {",
+									"    var rfid = cats[0];",
+									"    pm.expect(rfid.trackerType).to.equal(\"RFID\");",
+									"    pm.expect(rfid.totalInZone).to.equal(1);",
+									"    pm.expect(rfid.totalOutZone).to.equal(1);",
+									"});",
+									"",
+									"pm.test(\"Check Cats GPS\", function () {",
+									"    var gps = cats[1];",
+									"    pm.expect(gps.trackerType).to.equal(\"GPS\");",
+									"    pm.expect(gps.totalInZone).to.equal(1);",
+									"    pm.expect(gps.totalOutZone).to.equal(0);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/inzone",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inzone"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
